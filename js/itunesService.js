@@ -10,4 +10,13 @@ app.service('itunesService', function($http, $q){
   //You can return the http request or you can make your own promise in order to manipulate the data before you resolve it.
 
     //Code here
+    this.getSongs = function(artist) {
+      var url = 'https://itunes.apple.com/search?term=' + artist + '&callback=JSON_CALLBACK'
+      return $http.jsonp(url).then(function(response){
+        var songs = response.data.results
+        return songs
+      })
+    };
+        
 });
+
